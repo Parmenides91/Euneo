@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Euneo.Models;
 
 namespace Euneo.Data
 {
@@ -9,5 +10,6 @@ namespace Euneo.Data
             : base(options)
         {
         }
+        public DbSet<Euneo.Models.Conversation> Conversation { get; set; } = default!;
     }
 }
