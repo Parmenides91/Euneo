@@ -2,6 +2,8 @@
 
 namespace Euneo.Models;
 
+// TODO crear modelo para filtrar conversaciones.
+// TODO Fecha de importación como campo no editable fijado en creación.
 public class Conversation
 {
     public int Id { get; set; }
