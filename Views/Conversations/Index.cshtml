@@ -7,6 +7,8 @@
 
 <h1>Conversaciones</h1>
 
+@* TODO ambos campos fecha mostrarse como YYYY-MM-DD HH:mm:ss *@
+
 <p>
     <a asp-action="Create">Crear nueva</a>
 </p>
@@ -18,6 +20,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ImportedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModifiedDate)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Type)
@@ -33,6 +38,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ImportedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModifiedDate)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Type)
