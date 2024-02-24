@@ -58,7 +58,7 @@ namespace Euneo.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Field CreatedDate set at creation
+                // Field ImportedDate and ModifiedDate set at creation
                 conversation.ImportedDate = DateTime.UtcNow;
                 conversation.ModifiedDate = DateTime.UtcNow;
 

@@ -3,7 +3,6 @@
 namespace Euneo.Models;
 
 // TODO crear modelo para filtrar conversaciones.
-// TODO campo de fecha de modificación que se actualice cada vez que se modifique el registro.
 // TODO el campo de tipo de chat debe tener sólo las posibles opciones.
 
 public class Conversation
@@ -28,15 +27,6 @@ public class Conversation
     [Required]
     [Display(Name = "Tipo de chat")]
     public string? Type { get; set; }
-
-
-    // Fields ImportedDate and ~ModifiedDate~ set at creation
-    //public Conversation()
-    //{
-    //    DateTime _tempDate = DateTime.UtcNow;
-    //    ImportedDate = _tempDate;
-    //    //ModifiedDate = _tempDate;
-    //}
 
 }
 
