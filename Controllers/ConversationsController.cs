@@ -54,10 +54,14 @@ namespace Euneo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,ImportedDate,Type")] Conversation conversation)
+        public async Task<IActionResult> Create([Bind("Id,Title,ImportedDate,Type,ModifiedDate")] Conversation conversation)
         {
             if (ModelState.IsValid)
             {
+                // Field CreatedDate set at creation
+                conversation.ImportedDate = DateTime.UtcNow;
+                conversation.ModifiedDate = DateTime.UtcNow;
+
                 _context.Add(conversation);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -86,7 +90,7 @@ namespace Euneo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ImportedDate,Type")] Conversation conversation)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ImportedDate,Type,ModifiedDate")] Conversation conversation)
         {
             if (id != conversation.Id)
             {
@@ -97,6 +101,9 @@ namespace Euneo.Controllers
             {
                 try
                 {
+                    // Update ModifiedDate on every edit
+                    conversation.ModifiedDate = DateTime.UtcNow;
+
                     _context.Update(conversation);
                     await _context.SaveChangesAsync();
                 }
