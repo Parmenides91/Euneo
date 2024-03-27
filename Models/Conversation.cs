@@ -38,7 +38,7 @@ public class Conversation
     [Display(Name = "Tipo de Conversación")]
     public virtual ConversationType? ConversationType { get; set; }
 
-
+    // TODO definir que ocurre con el modelo cuando se le borra una clave foranea
     //ModelBuilder.Entity<Conversation>().HasOne(c => c.ConversationType).WithMany().OnDelete(DeleteBehavior.SetNull);
 
     

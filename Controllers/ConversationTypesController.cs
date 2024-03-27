@@ -139,6 +139,7 @@ namespace Euneo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            // TODO reescribir el borrado para detectar los fallos cuando trata de borrar una clave foranea "departmentcontroller.cs" y enlace marcadores Firefox.
             var conversationType = await _context.ConversationType.FindAsync(id);
             if (conversationType != null)
             {
