@@ -22,6 +22,9 @@ namespace Euneo.Controllers
         // GET: Conversations
         public async Task<IActionResult> Index()
         {
+            List<ConversationType> conversationTypes = _context.ConversationType.ToList();
+            ViewBag.ConversationTypes = new SelectList(conversationTypes, "ConversationTypeId", "ConversationTypeName");
+
             return View(await _context.Conversation.ToListAsync());
         }
 
@@ -40,12 +43,20 @@ namespace Euneo.Controllers
                 return NotFound();
             }
 
+            List<ConversationType> conversationTypes = _context.ConversationType.ToList();
+            ViewBag.ConversationTypes = new SelectList(conversationTypes, "ConversationTypeId", "ConversationTypeName");
+
             return View(conversation);
         }
 
         // GET: Conversations/Create
         public IActionResult Create()
         {
+            List<ConversationType> conversationTypes = _context.ConversationType.ToList();
+            ViewBag.ConversationTypes = new SelectList(conversationTypes, "ConversationTypeId", "ConversationTypeName");
+            //Conversation conversation = new Conversation();
+            //return View(conversation);
+
             return View();
         }
 
@@ -54,7 +65,7 @@ namespace Euneo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,ImportedDate,Type,ModifiedDate")] Conversation conversation)
+        public async Task<IActionResult> Create([Bind("Id,Title,ImportedDate,Type,ModifiedDate,ConversationTypeId")] Conversation conversation)
         {
             if (ModelState.IsValid)
             {
@@ -82,6 +93,10 @@ namespace Euneo.Controllers
             {
                 return NotFound();
             }
+
+            List<ConversationType> conversationTypes = _context.ConversationType.ToList();
+            ViewBag.ConversationTypes = new SelectList(conversationTypes, "ConversationTypeId", "ConversationTypeName");
+
             return View(conversation);
         }
 
@@ -90,7 +105,7 @@ namespace Euneo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ImportedDate,Type,ModifiedDate")] Conversation conversation)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ImportedDate,Type,ModifiedDate,ConversationTypeId")] Conversation conversation)
         {
             if (id != conversation.Id)
             {
@@ -138,6 +153,9 @@ namespace Euneo.Controllers
                 return NotFound();
             }
 
+            List<ConversationType> conversationTypes = _context.ConversationType.ToList();
+            ViewBag.ConversationTypes = new SelectList(conversationTypes, "ConversationTypeId", "ConversationTypeName");
+
             return View(conversation);
         }
 
@@ -160,5 +178,8 @@ namespace Euneo.Controllers
         {
             return _context.Conversation.Any(e => e.Id == id);
         }
+
+
     }
+
 }

@@ -4,6 +4,7 @@ using Euneo.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Euneo.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240327194910_tipoConversacion_001")]
+    partial class tipoConversacion_001
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,7 +33,7 @@ namespace Euneo.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("ConversationTypeId")
+                    b.Property<int>("ConversationTypeId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("ImportedDate")
@@ -278,7 +281,9 @@ namespace Euneo.Data.Migrations
                 {
                     b.HasOne("Euneo.Models.ConversationType", "ConversationType")
                         .WithMany("Conversations")
-                        .HasForeignKey("ConversationTypeId");
+                        .HasForeignKey("ConversationTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("ConversationType");
                 });

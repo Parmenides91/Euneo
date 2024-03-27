@@ -1,4 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Euneo.Models;
 
@@ -28,7 +32,18 @@ public class Conversation
     [Display(Name = "Tipo de chat")]
     public string? Type { get; set; }
 
+    [ForeignKey("ConversationTypeId")]
+    public int? ConversationTypeId { get; set; }
+
+    [Display(Name = "Tipo de Conversación")]
+    public virtual ConversationType? ConversationType { get; set; }
+
+
+    //ModelBuilder.Entity<Conversation>().HasOne(c => c.ConversationType).WithMany().OnDelete(DeleteBehavior.SetNull);
+
+    
 }
+
 
 
 // ¿Cambios en el modelo?

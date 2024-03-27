@@ -11,5 +11,6 @@ namespace Euneo.Data
         {
         }
         public DbSet<Euneo.Models.Conversation> Conversation { get; set; } = default!;
+        public DbSet<Euneo.Models.ConversationType> ConversationType { get; set; } = default!;
     }
 }
